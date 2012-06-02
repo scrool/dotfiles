@@ -1,4 +1,4 @@
-# pcasaretto does dotfiles
+# scrool does dotfiles
 
 ## dotfiles
 
@@ -12,7 +12,7 @@ subject](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
 
 ## install
 
-- `git clone git://github.com/pcasaretto/dotfiles ~/.dotfiles`
+- `git clone git://github.com/scrool/dotfiles ~/.dotfiles`
 - `cd ~/.dotfiles`
 - `rake install`
 
@@ -53,7 +53,8 @@ said, I do use this as *my* dotfiles, so there's a good chance I may break
 something if I forget to make a check for a dependency.
 
 If you're brand-new to the project and run into any blockers, please
-[open an issue](https://github.com/pcasaretto/dotfiles/issues) on this repository
+[open an issue](https://github.com/scrool/dotfiles/issues) on this repository
 and I'd love to get it fixed for you!
 
 ## thanks [Zach Holman](http://github.com/holman)
+## thanks [pcasaretto](http://github.com/pcasaretto)
