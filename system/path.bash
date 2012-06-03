@@ -1,3 +1,6 @@
-export PATH=".git/safe/../../bin:/usr/local/bin:$DOTFILES/bin:$PATH"
-
-#.git/safe? https://twitter.com/#!/tpope/statuses/165631968996900865
+PATH="/usr/local/bin:$DOTFILES/bin:$PATH"
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+export PATH
