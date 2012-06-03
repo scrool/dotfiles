@@ -57,5 +57,16 @@ If you're brand-new to the project and run into any blockers, please
 [open an issue](https://github.com/scrool/dotfiles/issues) on this repository
 and I'd love to get it fixed for you!
 
-## thanks [Zach Holman](http://github.com/holman)
-## thanks [pcasaretto](http://github.com/pcasaretto)
+## thanks
+* [Zach Holman](http://github.com/holman)
+* [pcasaretto](http://github.com/pcasaretto)
+
+## Interesting repos
+* https://github.com/rtomayko/dotfiles
+* https://github.com/skwp/dotfiles
+* https://github.com/jeffbuttars/Viming-With-Buttars
+* https://github.com/zaiste/vimified
+* https://github.com/spf13/spf13-vim
+* https://github.com/thenovices/dotfiles
+* https://github.com/cypher/dotfiles
+* https://github.com/holman/dotfiles
