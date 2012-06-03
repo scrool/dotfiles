@@ -1,0 +1,37 @@
+[color]
+    ui = auto
+[color "grep"]
+    match = green reverse
+[alias]
+    ci = commit
+    co = checkout
+    st = status
+    fa = fetch --all
+    tags = tag -l
+    branches = branch -a
+    show-graph = log --graph --oneline --all --branches --decorate
+    current-branch = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
+    vimdiff = difftool -y -t vimdiff
+    vd = difftool -y -t vimdiff
+    gvimdiff = difftool -y -t gvimdiff
+    gvd = difftool -y -t gvimdiff
+    last = log -1 HEAD
+[giggle]
+    compact-mode = false
+    main-window-maximized = true
+    main-window-geometry = 0x0+0+0
+    file-view-hpane-position = 306
+    file-view-vpane-position = 422
+    history-view-vpane-position = 441
+    main-window-view = HistoryView
+[push]
+    default = matching
+[cola]
+    fontdiff = Inconsolata,9,-1,5,50,0,0,0,0,0
+    tabwidth = 4
+[sendemail]
+    chainreplyto = false
+[color "grep"]
+    match = green reverse
+[core]
+    excludesfile = ~/.gitignore
