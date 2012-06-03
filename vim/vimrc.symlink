@@ -1,0 +1,324 @@
+" #Viming With Scrool
+"
+" ## Maintainer: Pavol 'Scrool' Babincak <scroolik@gmail.com>
+" [Git Hub Repo](http://github.com/scrool/dotfiles)
+"
+" ## .vimrc sections:
+" * [Bundle preamble]
+" * [Vim Options]
+" * [Keyboard mapping]
+" * [Bundle specific settings]
+" * [Filetype specific settings]
+" * [References]
+"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ## Bundle preamble
+"
+" We deal with our bundles first thing because later sections rely on them
+" being available. Uses a package manager [Vundle](https://github.com/gmarik/vundle)
+" to easily track bundles and get newest versions.
+"
+" Add vundle to our runtime path (rtp) and start it.
+filetype off "required by Vundle
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+" Let Vundle manage Vundle. Required!
+Bundle 'gmarik/vundle'
+
+" ## Vim Options
+"
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+"Automatically save on some commands (e.g. :make)
+set autowrite
+" Allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+" Yanks go on clipboard instead.
+set clipboard+=unnamed
+" Ask to save for certain operations (e.g. :q, :e) instead of fail
+set confirm
+"Use vertical diff if it is available
+if version >= 700
+    set diffopt=vertical
+endif
+" Use UTF-8 as internal encoding even no matter what environment is Vim run
+" in.
+set encoding=utf8
+" Try these encodings on opening file
+set fileencodings=ucs-bom,utf-8,cp1250,latin2,latin1,default
+" Do not put 2 spaces at the end of sentence with join command
+set nojoinspaces
+" Break lines only on certain characters (e.g. space) instead of hard break
+set linebreak
+" In Vim use english messages no matter what localisation is set
+if has("unix")
+    language messages en_US.UTF-8
+else
+    language messages en
+endif
+" Set filename in terminal title
+set title
+" When a bracket is inserted, briefly jump to the matching one.
+set showmatch
+" Enable syntax if terminal is able to display at least two colors.
+if &t_Co > 2
+    syntax on
+endif
+" Persistent undo history. WARNING: a very new feature. Use at your own risk!
+if version >= 703
+    " Make sure undo directory exists
+    silent execute '!mkdir -p ~/.vim/var/undo'
+    set undodir=~/.vim/var/undo
+    set undofile
+endif
+
+" ### Search and Replace
+" Highlight last searched string
+set hlsearch
+" Show results while typing a search command
+set incsearch
+" Ignore case in search patterns. Note: Can be overruled by using '\c' or '\C'
+" in the pattern.
+set ignorecase
+" If pattern contains upper case characters override ignorecase
+set smartcase
+
+" Some characters e.g. (, ), |, {, } will be taken as magic without escaping
+nnoremap / /\v
+vnoremap / /\v
+
+" ### Default indenting
+" Copy indent from current line when starting a new line
+set autoindent
+" Number of spaces to use for each step of (auto)indent. Used for commands <
+" and >.
+set shiftwidth=4
+" Round indent to multiple of 'shiftwidth'. Used for commands < and >.
+set shiftround
+
+" In insert mode use the appropriate number of spaces to insert a <Tab>.
+set expandtab
+" Number of spaces that a <Tab> in the file counts for.
+set tabstop=4
+" How many spaces delete backspace in indent
+set softtabstop=4
+
+" Enable indenting plugin based on filetype
+filetype plugin indent on
+
+" ### Statusline and Ruler
+" Always display status line
+set laststatus=2
+" Show (partial) command in the last line of the screen
+set showcmd
+" Put message with mode name in the last line of the screen
+set showmode
+" Statusline format:
+set statusline=%f "tail of the filename
+set statusline+=%r "read only flag
+set statusline+=%m "modified flag
+set statusline+=%= "left/right separator
+set statusline+=%c: "cursor column
+set statusline+=%l/%L "cursor line/total lines
+set statusline+=\ %P "percent through file
+
+" Use tab key to start wildard expansion on command line
+set wildchar=<Tab>
+" Show available command completion in status line
+set wildmenu
+" At command line, complete longest common string, then each full match
+set wildmode=longest:full,full
+
+" A list of file patterns.  A file that matches with one of these patterns is
+" ignored when completing file or directory names.
+set wildignore+=.hg,.git,.svn,.subversion,CVS " Version control
+set wildignore+=*.aux,*.out,*.toc " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.sw? " Vim swap files
+set wildignore+=*.pyc,*.pyo " Python byte code
+set wildignore+=*.orig " Merge resolution files
+
+" ### Colorschemes and Colors
+" [Xoria256](https://github.com/vim-scripts/xoria256.vim) is finely tuned soft
+" gamma, 256 colors, dark background colorscheme.
+Bundle 'vim-scripts/xoria256.vim'
+
+" WARNING: force 256 colors on terminal.
+set t_Co=256
+" If 256 terminal is capable of displaying 256 colors use colorscheme
+" xoria256. Otherwise use colorscheme evening.
+if &t_Co == 256 && $DISPLAY != ''
+    colorscheme xoria256
+else
+    colorscheme evening
+endif
+
+" ## Keyboard mapping
+" Use key [,] as mapleader. It is quite commonly redefined to this instead of
+" original '/'.
+let mapleader = ","
+" Use key [/] as localmapleader.
+let maplocalleader = "\\"
+
+" Key [F9] runs make
+map <F9> :make<cr>
+vmap <F9> <esc>:make<cr>i
+imap <F9> <esc>:make<cr>i
+
+" Key [F12] toggles paste mode and displays current mode in status line.
+set pastetoggle=<F12> "allows use of <F12> in insert mode
+nnoremap <F12> :set paste! paste?<CR>
+imap <F12> <C-O><F12>
+" Key shift+[F12] toggles wrapping lines and displays current mode in status line.
+nnoremap <S-F12> :set wrap! wrap?<CR>
+imap <S-F12> <C-O><S-F12>
+" Key ctrl+[F12] toggles display of special characters and displays current mode
+" in status line.
+nnoremap <C-F12> :set list! list?<CR>
+imap <C-F12> <C-O><C-F12>
+
+" Key ctrl+[J] and ctrl+[K] moves between split windows and maximizes window with
+" cursor afterwards
+nnoremap <C-j> <C-w>j<C-w>_
+nnoremap <C-k> <C-w>k<C-w>_
+
+" Key ctrl+[L] clears search highlight. Screen redraw is done too.
+nnoremap <C-l> :nohls<CR><C-l>
+inoremap <C-l> <C-O>:nohls<CR>
+
+" Key [p] pastes from unnamed register
+vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
+
+" System clipboard interaction
+" From https://github.com/henrik/dotfiles/blob/master/vim/config/mappings.vim
+noremap <leader>y "*y
+noremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
+noremap <leader>P :set paste<CR>"*P<CR>:set nopaste<CR>
+
+" ## Bundle (plugin) specific settings
+" #### NERDTree
+" Bundle [nerdtree](https://github.com/scrooloose/nerdtree) is tree style file
+" explorer
+Bundle 'scrooloose/nerdtree'
+
+" Key Ctrl+[U] is used to toggle display of NERDTree.
+nmap <C-u> :NERDTreeToggle<CR>
+" Disable the scrollbars
+set guioptions-=r
+set guioptions-=L
+
+" #### AutoFenc
+" Bundle [AutoFenc](https://github.com/vim-scripts/AutoFenc.vim) is automatic
+" encoding detection.
+Bundle 'vim-scripts/AutoFenc.vim'
+
+" #### Indent guides
+" Bundle [Indent guides](https://github.com/nathanaelkane/vim-indent-guides)
+" visually displays indent levels in code. It is useful for Python.
+Bundle 'nathanaelkane/vim-indent-guides'
+" Indent guides are only one column thick
+let g:indent_guides_guide_size = 1
+
+" ### Filetype specific settings
+" #### Javascript
+" Settings for programming language Javascript.
+augroup ft_javascript
+    "In Javascript use C-style indentation.
+    autocmd BufNewFile,BufRead *.js set cindent
+    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+augroup END
+
+" #### Plain text
+" Settings for plain text files.
+augroup ft_text
+    autocmd FileType text setlocal textwidth=76
+    if exists("&colorcolumn")
+        autocmd FileType text setlocal colorcolumn=+1
+    endif
+augroup END
+
+" #### Python
+" Settings for programming language Python.
+let g:pydoc = 'pydoc'
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 0
+let g:pymode_syntax_builtin_objs = 1
+let g:pymode_run = 0
+let g:pymode_lint = 0
+let g:pymode_folding = 0
+
+let g:pymode_options_indent = 0
+let g:pymode_options_fold = 0
+let g:pymode_options_other = 0
+
+let g:pymode_rope = 1
+let g:pymode_rope_global_prefix = "<localleader>R"
+let g:pymode_rope_local_prefix = "<localleader>r"
+let g:pymode_rope_auto_project = 1
+let g:pymode_rope_enable_autoimport = 0
+let g:pymode_rope_autoimport_generate = 1
+let g:pymode_rope_autoimport_underlineds = 0
+let g:pymode_rope_codeassist_maxfixes = 10
+let g:pymode_rope_sorted_completions = 1
+let g:pymode_rope_extended_complete = 1
+let g:pymode_rope_autoimport_modules = ["os", "shutil", "datetime"]
+let g:pymode_rope_confirm_saving = 1
+let g:pymode_rope_vim_completion = 1
+let g:pymode_rope_guess_project = 1
+let g:pymode_rope_goto_def_newwin = 0
+let g:pymode_rope_always_show_complete_menu = 0
+
+" Bundles
+Bundle 'klen/python-mode'
+Bundle 'python.vim'
+Bundle 'python_match.vim'
+Bundle 'pythoncomplete'
+
+" Autocmd group
+augroup ft_python
+    autocmd!
+    autocmd FileType python setlocal define=^\s*\\(def\\\\|class\\) textwidth=80 formatoptions-=t
+
+    if exists("&colorcolumn")
+        "Color column on textwidth
+        autocmd FileType python setlocal colorcolumn=+1
+    endif
+
+    "autocmd FileType python set omnifunc=pythoncomplete#Complete
+    autocmd FileType python setlocal define=^\s*\\(def\\\\|class\\)
+augroup END
+
+" #### Vim configuration files
+" Settings for Vim configuration files and help.
+augroup ft_vim
+    autocmd!
+    autocmd FileType help setlocal textwidth=78
+    autocmd BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+augroup END
+
+" #### Misc
+" Settings for the rest of filetypes define together.
+augroup ft_misc
+    " For *.phtml use php filetype. Original filetype used for *.phtml files
+    " doesn't like HTML.
+    autocmd BufNewFile,BufRead *.phtml setlocal filetype=php
+
+    " Omni completion - ctrl+x ctrl+o
+    autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+    autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+    autocmd FileType c set omnifunc=ccomplete#Complete
+augroup END
+
+" ## References
+" People and places I've gotten stuff from
+" * https://github.com/zaiste/vimified/blob/master/vimrc
+" * https://github.com/gmarik/vimfiles/blob/master/vimrc
+" * https://github.com/jeffbuttars/Viming-With-Buttars
+

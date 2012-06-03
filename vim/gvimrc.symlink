@@ -1,0 +1,27 @@
+" Use english instead of localisation. Mainly Windows had problems with that.
+set langmenu=none
+" Syntax highlighting
+syntax on
+" Height of my notebook display
+set lines=42
+" Half of width of my notebook display
+set columns=81
+set guifont=Inconsolata\ Medium\ 11
+
+set mousemodel=popup
+
+" These are used only in GUI because in terminal there were problems with
+" copying to clipboard.
+"
+" In list mode set characters shown for special cases such as:
+" wrap lines, trail spaces, tab key, and end of line.
+set listchars=extends:»,precedes:«,eol:¶
+" Begining of line if it was wrapped
+set showbreak=«
+
+" Trailing whitespace only shown when not in insert mode so I don't go insane.
+augroup trailing
+    au!
+    au InsertEnter * :set listchars-=trail:⌴
+    au InsertLeave * :set listchars+=trail:⌴
+augroup END
