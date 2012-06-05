@@ -87,10 +87,6 @@ set ignorecase
 " If pattern contains upper case characters override ignorecase
 set smartcase
 
-" Some characters e.g. (, ), |, {, } will be taken as magic without escaping
-nnoremap / /\v
-vnoremap / /\v
-
 " ### Default indenting
 " Copy indent from current line when starting a new line
 set autoindent
