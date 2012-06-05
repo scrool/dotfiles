@@ -148,7 +148,7 @@ Bundle 'vim-scripts/xoria256.vim'
 set t_Co=256
 " If 256 terminal is capable of displaying 256 colors use colorscheme
 " xoria256. Otherwise use colorscheme evening.
-if &t_Co == 256 && $DISPLAY != ''
+if &t_Co == 256
     colorscheme xoria256
 else
     colorscheme evening
