@@ -270,7 +270,11 @@ let g:pymode_rope_goto_def_newwin = 0
 let g:pymode_rope_always_show_complete_menu = 0
 
 " Bundles
-Bundle 'klen/python-mode'
+" python-mode will print annoying message on startup if python isn't enabled
+" in Vim. Don't even try to use it if python support is missing.
+if has('python')
+    Bundle 'klen/python-mode'
+endif
 Bundle 'python.vim'
 Bundle 'python_match.vim'
 Bundle 'pythoncomplete'
