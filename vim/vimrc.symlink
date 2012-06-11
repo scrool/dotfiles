@@ -33,6 +33,28 @@ Bundle 'gmarik/vundle'
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Make vim respect the XDG base directory spec. For more information see:
+" http://tlvince.com/2011/02/03/vim-respect-xdg/
+" Firstly make sure to use default if $XDG_CACHE_HOME is not defined.
+if empty($XDG_CACHE_HOME)
+    let xdg_cache_home="$HOME/.cache"
+else
+    let xdg_cache_home="$XDG_CACHE_HOME"
+endif
+
+" Secondly create directories and set paths.
+silent execute '!mkdir -p '.xdg_cache_home.'/vim/swap'
+execute "set directory=".xdg_cache_home."/vim/swap,~/,/tmp"
+execute "set viminfo+=n".xdg_cache_home."/vim/viminfo"
+let g:netrw_home=expand(xdg_cache_home."/vim")
+"" Persistent undo history. WARNING: a very new feature. Use at your own risk!
+if version >= 703
+        " Make sure undo directory exists
+        silent execute '!mkdir -p '.xdg_cache_home.'/vim/undo'
+        execute "set undodir=".xdg_cache_home."/vim/undo"
+    set undofile
+endif
+
 "Automatically save on some commands (e.g. :make)
 set autowrite
 " Allow backspacing over everything in insert mode
@@ -67,13 +89,6 @@ set showmatch
 " Enable syntax if terminal is able to display at least two colors.
 if &t_Co > 2
     syntax on
-endif
-" Persistent undo history. WARNING: a very new feature. Use at your own risk!
-if version >= 703
-    " Make sure undo directory exists
-    silent execute '!mkdir -p ~/.vim/var/undo'
-    set undodir=~/.vim/var/undo
-    set undofile
 endif
 
 " ### Search and Replace
