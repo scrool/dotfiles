@@ -164,7 +164,13 @@ set t_Co=256
 " If 256 terminal is capable of displaying 256 colors use colorscheme
 " xoria256. Otherwise use colorscheme evening.
 if &t_Co == 256
-    colorscheme xoria256
+    " Try to set xoria256. If it fails set default without annoying error
+    " message.
+    try
+        colorscheme xoria256
+    catch E185
+        colorscheme default
+    endtry
 else
     colorscheme evening
 endif
