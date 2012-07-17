@@ -70,3 +70,9 @@ and I'd love to get it fixed for you!
 * https://github.com/thenovices/dotfiles
 * https://github.com/cypher/dotfiles
 * https://github.com/holman/dotfiles
+* https://bitbucket.org/zeekay/dotfiles/src
+* https://bitbucket.org/ches/dotfiles/src
+
+## Requirements
+* gnome-256color terminal:
+  * sudo apt-get install ncurses-term
