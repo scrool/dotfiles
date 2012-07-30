@@ -1,27 +1,11 @@
-#.inputrc by Pavol 'Scrool' Babincak <pavol.babincak@gmail.com>
-#Povodne z Ubuntu
-#Verzia 2.2009-06-07
-
 # Be 8 bit clean.
 set input-meta on
 set output-meta on
 
-# To allow the use of 8bit-characters like the german umlauts, comment out
-# the line below. However this makes the meta key not work as a meta key,
-# which is annoying to those which don't need to type in 8-bit characters.
-
-# set convert-meta off
-
-# try to enable the application keypad when it is called.  Some systems
-# need this to enable the arrow keys.
-# set enable-keypad on
-
-# see /usr/share/doc/bash/inputrc.arrows for other codes of arrow keys
-
 # do not bell on tab-completion
-#Scrool: nebolo nastavene
 set bell-style none
 # set bell-style visible
+set blink-matching-paren on
 
 # some defaults / modifications for the emacs mode
 $if mode=emacs
@@ -32,15 +16,6 @@ $if mode=emacs
     # allow the use of the Delete/Insert keys
     "\e[3~": delete-char
     "\e[2~": quoted-insert
-
-    # mappings for "page up" and "page down" to step to the beginning/end
-    # of the history
-    # "\e[5~": beginning-of-history
-    # "\e[6~": end-of-history
-
-    # alternate mappings for "page up" and "page down" to search the history
-    # "\e[5~": history-search-backward
-    # "\e[6~": history-search-forward
 
     # mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
     "\e[1;5C": forward-word
@@ -64,14 +39,8 @@ $if mode=emacs
     # "\e[H": beginning-of-line
     # "\e[F": end-of-line
 
-    # Scrool: stadeto dalej moje zmeny
     # enable one-tab completion
     set show-all-if-ambiguous on 
-
-    #set page-completions off
-
-    #TAB: possible-completions
-    #TAB: menu-complete
 
     # shift-TAB to menu-complete backwards
     # cf. http://www.tikirobot.net/wp/2006/03/29/reverse-menu-complete-in-bash/
