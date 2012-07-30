@@ -1,5 +1,11 @@
 fix_term
 
+# Source global definitions. This is useful on Fedora boxes at least because of
+# Bash completion.
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
