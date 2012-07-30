@@ -1,0 +1,43 @@
+set -g default-terminal "screen-256color"
+
+# Allow ctrl+cursor keys
+#set-window-option -g xterm-keys on
+
+#
+# remap prefix to Control + a
+set -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+
+unbind h
+bind h select-pane -L
+unbind j
+bind j select-pane -D
+unbind k
+bind k select-pane -U
+unbind l
+bind l select-pane -R
+
+unbind '"'
+bind '"' list-windows
+
+# use VI
+set-window-option -g mode-keys vi
+  
+# horizontal and vertical splits
+unbind v
+bind v split-window -h
+unbind s
+bind s split-window
+
+# reload config
+unbind r
+bind r source-file ~/.tmux.conf
+
+# status bar
+set -g status-bg black
+set -g status-fg white
+set -g status-interval 1
+set -g status-right-length 60
+
+#Used source: https://github.com/joshuaclayton/dotfiles/blob/master/tmux.conf
