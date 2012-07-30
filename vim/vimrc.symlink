@@ -217,6 +217,9 @@ noremap <leader>y "*y
 noremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
 noremap <leader>P :set paste<CR>"*P<CR>:set nopaste<CR>
 
+" Key ,s removes unused spaces at end of lines. Taken from pymode module.
+noremap <leader>s :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))<CR>
+
 " ## Bundle (plugin) specific settings
 " #### NERDTree
 " Bundle [nerdtree](https://github.com/scrooloose/nerdtree) is tree style file
