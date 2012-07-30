@@ -2,10 +2,13 @@
 set langmenu=none
 " Syntax highlighting
 syntax on
-" Height of my notebook display
-set lines=42
-" Half of width of my notebook display
-set columns=81
+" If not using vimdiff
+if !&diff
+    " Height of my notebook display
+    set lines=42
+    " Half of width of my notebook display
+    set columns=81
+endif
 set guifont=Inconsolata\ Medium\ 11
 
 set mousemodel=popup
