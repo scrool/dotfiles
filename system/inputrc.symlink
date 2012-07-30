@@ -76,4 +76,9 @@ $if mode=emacs
     # shift-TAB to menu-complete backwards
     # cf. http://www.tikirobot.net/wp/2006/03/29/reverse-menu-complete-in-bash/
     "\e[Z": "\e-1\C-i"
+
+    # Redefine Ctrl+W to delete word. Words are composed of alphanumeric
+    # characters (letters and digits. Ctrl+W previously deleted words separated
+    # by space only.
+    "\C-w": backward-kill-word
 $endif
