@@ -35,3 +35,5 @@
     match = green reverse
 [core]
     excludesfile = ~/.gitignore
+[log]
+    decorate = true
