@@ -343,6 +343,10 @@ augroup ft_misc
     autocmd FileType c set omnifunc=ccomplete#Complete
 augroup END
 
+augroup git
+    autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
+augroup END
+
 " ## References
 " People and places I've gotten stuff from
 " * https://github.com/zaiste/vimified/blob/master/vimrc
