@@ -175,6 +175,16 @@ else
     colorscheme evening
 endif
 
+" Settings for colorcolumn
+if exists("&colorcolumn")
+    " Custom color of colorcolumn. Same as status line in Xoria256.
+    highlight ColorColumn ctermfg=15  guifg=#ffffff ctermbg=239 guibg=#4e4e4e cterm=bold gui=bold
+else
+    highlight OverLength ctermfg=15  guifg=#ffffff ctermbg=239 guibg=#4e4e4e cterm=bold gui=bold
+    match OverLength /\%81v.\+/
+endif
+
+
 " ## Keyboard mapping
 " Use key [,] as mapleader. It is quite commonly redefined to this instead of
 " original '/'.

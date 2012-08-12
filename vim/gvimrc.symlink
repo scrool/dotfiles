@@ -1,7 +1,5 @@
 " Use english instead of localisation. Mainly Windows had problems with that.
 set langmenu=none
-" Syntax highlighting
-syntax on
 " If not using vimdiff
 if !&diff
     " Height of my notebook display
