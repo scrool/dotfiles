@@ -20,7 +20,8 @@ set listchars=extends:»,precedes:«,eol:¶
 " Begining of line if it was wrapped
 set showbreak=«
 
-" Trailing whitespace only shown when not in insert mode so I don't go insane.
+" Trailing whitespace only shown when not in insert mode. Otherwise show '_'
+" chars only. Works only in :list enabled.
 augroup trailing
     au!
     au InsertEnter * :set listchars-=trail:⌴
