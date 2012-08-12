@@ -251,8 +251,23 @@ Bundle 'vim-scripts/AutoFenc.vim'
 " Bundle [Indent guides](https://github.com/nathanaelkane/vim-indent-guides)
 " visually displays indent levels in code. It is useful for Python.
 Bundle 'nathanaelkane/vim-indent-guides'
+
+" Enable indent guides upon Vim startup.
+" Note: intent guides will be enable for all buffers/windows. I haven't found
+" way to enable to enable it only for specific ones.
+let g:indent_guides_enable_on_vim_startup = 1
+
 " Indent guides are only one column thick
 let g:indent_guides_guide_size = 1
+
+" Indent guides display after first indentation not on left side of the
+" window.
+let g:indent_guides_start_level = 2
+
+" Custom colors for indent guides. Same as status line in Xoria256.
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=239 guibg=#4e4e4e
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=239 guibg=#4e4e4e
 
 " ### Filetype specific settings
 " #### Javascript
