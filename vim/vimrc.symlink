@@ -218,6 +218,10 @@ nnoremap <C-k> <C-w>k<C-w>_
 nnoremap <C-l> :nohls<CR><C-l>
 inoremap <C-l> <C-O>:nohls<CR>
 
+" Key ,/ will clear highlighting from previous search
+nmap <silent> <leader>/ :nohlsearch<CR>
+
+
 " Key [p] pastes from unnamed register
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
